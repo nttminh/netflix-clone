@@ -3,10 +3,12 @@ import instance from './axios';
 import Banner from './components/Banner';
 import Row from './components/Row';
 import requests from './requests';
+import Nav from './components/Nav';
 
 function App() {
   return (
     <div className="App">
+      <Nav />
       <Banner />
       <Row title='NETFLIX ORIGINALS' fetchURL={requests.fetchNetflixOriginals} isLargeRow />
       <Row title='Trending Now' fetchURL={requests.fetchTrending} />
