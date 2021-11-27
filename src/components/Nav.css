@@ -22,9 +22,17 @@
 	width: 80px;
 }
 
+.nav_logo:hover {
+	cursor: pointer;
+}
+
 .nav_avatar {
 	position: fixed;
 	right: 20px;
 	object-fit: contain;
 	width: 30px;
+}
+
+.nav_avatar:hover {
+	cursor: pointer;
 }
