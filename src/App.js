@@ -28,26 +28,27 @@ function App() {
         }))
       } else {
         // Logged out
-        dispatch(logout)
+        dispatch(logout())
       }
     })
 
     // clean up the add event listener
     return unsubscribe;
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="App">
       <Router>
         {!user ? <LoginScreen /> :
           <Switch>
-            <Route path="/profile" >
-              <ProfileScreen />
-            </Route>
-
             <Route exact path="/">
               <HomeScreen />
             </Route>
+
+            <Route exact path="/profile" >
+              <ProfileScreen />
+            </Route>
+
           </Switch>
         }
       </Router>
