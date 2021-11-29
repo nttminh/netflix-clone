@@ -33,7 +33,7 @@ const Nav = () => {
             <img
                 onClick={() => history.push('/profile')}
                 className='nav_avatar'
-                src='https://scontent-bos3-1.xx.fbcdn.net/v/t1.6435-9/84330199_1032474353776233_4373010820318101504_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=VMIwGTzjBZQAX-VwG7w&_nc_ht=scontent-bos3-1.xx&oh=c869a684cba0b2040119d72aa769f2f7&oe=61C4CB39'
+                src='https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png'
                 alt='Avatar'
             />
 
