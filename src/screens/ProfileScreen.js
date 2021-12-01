@@ -15,7 +15,7 @@ const ProfileScreen = () => {
                 <h1>Edit Profile</h1>
                 <div className='profileScreen_info'>
                     <img
-                        src='https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png'
+                        src={user.photoURL ? user.photoURL : 'https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png'}
                         alt='Profile Avatar'
                     />
 
