@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux'
+import { selectUser } from '../features/userSlice'
 import './Nav.css'
 
 
 const Nav = () => {
     const [show, handleShow] = useState(false);
     const history = useHistory();
+    const user = useSelector(selectUser)
+
 
     function transitionNavBar() {
         if (window.scrollY > 100) {
@@ -33,7 +37,7 @@ const Nav = () => {
             <img
                 onClick={() => history.push('/profile')}
                 className='nav_avatar'
-                src='https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png'
+                src={user.photoURL ? user.photoURL : 'https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png'}
                 alt='Avatar'
             />
 
