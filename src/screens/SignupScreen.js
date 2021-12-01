@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { auth } from '../firebase';
+import firebase from 'firebase';
 import './SignupScreen.css'
 
 
@@ -12,16 +13,22 @@ const SignupScreen = () => {
     const register = (e) => {
         e.preventDefault(); // prevent page refresh when hit submit
 
-        auth.createUserWithEmailAndPassword(
-            emailRef.current.value,
-            passwordRef.current.value
-        )
-            .then((authUser) => {
-                console.log(authUser);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
+        try {
+            auth.createUserWithEmailAndPassword(
+                emailRef.current.value,
+                passwordRef.current.value
+            )
+                .then((authUser) => {
+                    // console.log(authUser);
+                    signIn();
+                })
+                .catch((error) => {
+                    alert(error.message)
+                });
+        } catch (error) {
+            alert(error)
+        }
+
     }
 
     const signIn = (e) => {
@@ -39,6 +46,19 @@ const SignupScreen = () => {
             })
     }
 
+    const signInWithGoogle = () => {
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(googleProvider)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+
+    }
+
     const handleToggle = () => {
         setToSignUp(!toSignUp);
     }
@@ -51,18 +71,28 @@ const SignupScreen = () => {
     return (
         <div className='signupScreen'>
             {!toSignUp ?
+                <>
+                    <form>
+                        <h1>Sign In</h1>
+                        <input ref={emailRef} placeholder='Email' type='email' />
+                        <input ref={passwordRef} placeholder='Password' type='password' />
+                        <button type='submit' onClick={signIn}>Sign In</button>
 
-                <form>
-                    <h1>Sign In</h1>
-                    <input ref={emailRef} placeholder='Email' type='email' />
-                    <input ref={passwordRef} placeholder='Password' type='password' />
-                    <button type='submit' onClick={signIn}>Sign In</button>
-
-                    <h4>
-                        <span className='signupScreen_gray'>New to Netflix? </span>
-                        <span className='signupScreen_link' onClick={handleToggle}>Sign Up now.</span>
-                    </h4>
-                </form> :
+                        <h4>
+                            <span className='signupScreen_gray'>New to Netflix? </span>
+                            <span className='signupScreen_link' onClick={handleToggle}>Sign Up now.</span>
+                        </h4>
+                    </form>
+                    <p>or</p>
+                    {/* <button onClick={signInWithGoogle}>Sign In with Google</button> */}
+                    <div class="google-btn" onClick={signInWithGoogle}>
+                        <div class="google-icon-wrapper">
+                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                        </div>
+                        <p class="btn-text"><b>Sign in with Google</b></p>
+                    </div>
+                </>
+                :
                 <form>
                     <h1>Sign Up</h1>
                     <input ref={emailRef} placeholder='Email' type='email' />
