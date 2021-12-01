@@ -20,7 +20,7 @@ const SignupScreen = () => {
             )
                 .then((authUser) => {
                     // console.log(authUser);
-                    signIn();
+                    signIn(e);
                 })
                 .catch((error) => {
                     alert(error.message)
@@ -53,7 +53,7 @@ const SignupScreen = () => {
                 console.log(res);
             })
             .catch((error) => {
-                console.log(error);
+                alert(error);
             })
 
 
@@ -76,7 +76,7 @@ const SignupScreen = () => {
                         <h1>Sign In</h1>
                         <input ref={emailRef} placeholder='Email' type='email' />
                         <input ref={passwordRef} placeholder='Password' type='password' />
-                        <button type='submit' onClick={signIn}>Sign In</button>
+                        <button type='submit' onClick={event => signIn(event)}>Sign In</button>
 
                         <h4>
                             <span className='signupScreen_gray'>New to Netflix? </span>
@@ -85,11 +85,11 @@ const SignupScreen = () => {
                     </form>
                     <p>or</p>
                     {/* <button onClick={signInWithGoogle}>Sign In with Google</button> */}
-                    <div class="google-btn" onClick={signInWithGoogle}>
-                        <div class="google-icon-wrapper">
-                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                    <div className="google-btn" onClick={signInWithGoogle}>
+                        <div className="google-icon-wrapper">
+                            <img className="google-icon" alt='Google Logo' src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
                         </div>
-                        <p class="btn-text"><b>Sign in with Google</b></p>
+                        <p className="btn-text"><b>Sign in with Google</b></p>
                     </div>
                 </>
                 :
@@ -97,7 +97,7 @@ const SignupScreen = () => {
                     <h1>Sign Up</h1>
                     <input ref={emailRef} placeholder='Email' type='email' />
                     <input ref={passwordRef} placeholder='Password' type='password' />
-                    <button type='submit' onClick={register}>Sign Up</button>
+                    <button type='submit' onClick={event => register(event)}>Sign Up</button>
 
                     <h4>
                         <span className='signupScreen_gray'>Had an account? </span>
